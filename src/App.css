@@ -1,0 +1,26 @@
+body {
+  overflow-x: hidden;
+}
+
+.main-image {
+  background: url(https://images.unsplash.com/photo-1522100566122-761ddcf1db3e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1955&q=80);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100vw;
+  height: 60vh;
+  position: relative;
+  background-attachment: fixed;
+}
+
+.filter:after{
+  background-color: rgb(10, 10, 10, .6);
+  content: '';
+  display: block;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
