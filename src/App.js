@@ -4,7 +4,10 @@ import {InputGroup, Input, InputGroupAddon, Button, FormGroup, Label, Spinner} f
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-import BookCard from "./components/BookCard"
+import BookCard from "./components/BookCard";
+import Navbar from "./components/Navbar";
+import Saved from './pages/Saved';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 function App() {
   //states
@@ -37,6 +40,8 @@ function App() {
 
   const mainHeader = () => {
     return(
+    <>
+      <Navbar />
       <div className="main-image d-flex justify-content-center align-items-center flex-column">
         {/* overlay */}
         <div className="filter"></div>
@@ -71,6 +76,7 @@ function App() {
          </div>
         </div>
       </div>
+    </>
     );
 
   };
@@ -85,7 +91,16 @@ function App() {
       }
       return (
         <div className="col-lg-4" key={item.id}>
-          <BookCard thumbnail={thumbnail} />
+          <BookCard 
+            thumbnail={thumbnail} 
+            title={item.volumeInfo.title}
+            authors={item.volumeInfo.authors}
+            categories={item.volumeInfo.categories}
+            description={item.volumeInfo.description}
+            pageCount={item.volumeInfo.pageCount}
+            buyLink={item.saleInfo.buyLink}
+            canonicalVolumeLink={item.volumeInfo.canonicalVolumeLink}
+            />
         </div>
       )
     })
@@ -111,7 +126,12 @@ function App() {
         
         {mainHeader()}
         {handleCards()}
+        <Router>
       <ToastContainer />
+      <Switch>
+        <Route path="/saved" pages={Saved}></Route>
+      </Switch>
+      </Router>
     </div>
   );
 }
